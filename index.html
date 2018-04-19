@@ -21,19 +21,75 @@
 
 class: center, middle
 
-# Title
+# ECMAScript 6
 
 ---
 
 # Agenda
 
-1. Introduction
-2. Deep-dive
-3. ...
+1. Variablen Deklaration
+2. Constant Deklaration
+3. Arrow function Syntax
+4. Template Literale
+5. Implizite Rückgaben
+6. Key/Property Kürzung
+7. Methodendefinition Kürzung
+8. Destructor
+9. Array Iteration
+10. Default Parameter
+11. Spread Syntax
+12. Klassen/Konstruktor Funktionen
+13. Vererbung
+14. Module - Import/Export
+15. Promises/Callbacks
 
 ---
 
-# Introduction
+## 1. Variablen Deklaration
+
+``` js
+let x = 1;
+
+if (x === 1) {
+  let x = 2;
+
+  console.log(x);
+  // expected output: 2
+}
+
+console.log(x);
+// expected output: 1
+```
+
+Durch das Statement "let" lassen sich Variablen in Ihrer Gültigkeit,
+auf den Scope/Block, in dem sie sich bei ihrer Erzeugung befinden,
+beschränken.
+
+---
+
+## 2. Contstant Deklaration
+
+``` js
+function abc(){
+
+  const x = 42;
+
+  x = 12; // Fehler: Der Wert der Variable kann nur gelesen werden!
+
+  const x = 33; // Fehler: x wurde in diesem Scope bereits deklariert!
+
+  if(true){
+
+    const x = 99; // Erfolg: Weil sich innerhalb dieses Scopes kein "const x" befindet
+
+  }
+
+}
+```
+
+Durch "const" besteht die Möglichkeit schreibgeschützte Variablen zu deklarieren.
+Diese besitzen wie "let" Variablen nur eine begrenzte Gültigkeit innerhalb ihres
+Scopes.
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
