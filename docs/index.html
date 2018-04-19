@@ -53,12 +53,10 @@ let x = 1;
 if (x === 1) {
   let x = 2;
 
-  console.log(x);
-  // expected output: 2
+  console.log(x); // Ausgabe: 2
 }
 
-console.log(x);
-// expected output: 1
+console.log(x); // Ausgabe: 1
 ```
 
 Durch das Statement "let" lassen sich Variablen in Ihrer Gültigkeit,
@@ -80,7 +78,8 @@ function abc(){
 
   if(true){
 
-    const x = 99; // Erfolg: Weil sich innerhalb dieses Scopes kein "const x" befindet
+    const x = 99; // Erfolg: Es befindet sich nur ein "const x" in diesem Scope!
+
 
   }
 
@@ -90,6 +89,27 @@ function abc(){
 Durch "const" besteht die Möglichkeit schreibgeschützte Variablen zu deklarieren.
 Diese besitzen wie "let" Variablen nur eine begrenzte Gültigkeit innerhalb ihres
 Scopes.
+
+---
+
+## 3. Arrow function Syntax
+
+``` js
+var foo = function(a){
+  console.log(a);
+}
+
+foo(55);
+```
+
+``` js
+var foo = a => {console.log(a);}
+
+foo(55);
+```
+
+Die Arrow-Function-Syntax erlaubt eine gekürzte Schreibweise von
+Funktionsausdrücken.
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
