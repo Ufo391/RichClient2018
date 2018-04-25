@@ -1,5 +1,3 @@
-class: center, middle
-
 # ECMAScript 6
 ##### Nikolai Kloß
 
@@ -178,6 +176,10 @@ Func.prototype.getSum = function() {
 var x = new Func(3, 4);
 x.getSum(); // returns 7
 ```
+
+---
+## 8. Klassendefinition
+
 ES6:
 ``` js
 class Func {
@@ -217,6 +219,8 @@ Inheritance.prototype.getProduct = function() {
 
 var y = new Inheritance(3, 4, 5);
 ```
+---
+## 9. Vererbung
 ES6:
 ``` js
 class Inheritance extends Func {
@@ -284,7 +288,8 @@ function doFirst(callback) {
 
 doFirst(doSecond);
 ```
-
+---
+## 11.Promises/Callbacks
 ES6 Promise:
 ``` js
 let doSecond = () => {
@@ -304,3 +309,7 @@ doFirst.then(doSecond);
 
 Promises erhalten die Übersichtlichkeit bei Verkettungen von asynchronen
 Funktionsaufrufen, welche bei klassischen Callbacks meist leidet.
+
+---
+
+# Ende :)
