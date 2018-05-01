@@ -25,322 +25,101 @@ class: center, middle
 
 class: center, middle
 
-# ECMAScript 6
+# ReactJS
 ##### Nikolai Kloß
 
 ---
 
 # Agenda
 
-1. Variablen Deklaration
-2. Constant Deklaration
-1. Arrow function Syntax
-4. Expression Interpolation
-5. Implizite Rückgaben
-6. Array Iterationen
-7. Default Parameter
-8. Klassendefinition
-9. Vererbung
-10. Module - Import/Export
-11. Promises/Callbacks
+1. Was ist React?
+2. Motivation
+3. Eine Bibliothek, kein Framework
+4. Kompoentenarchitektur
+5. JSX
+6. State
+7. Props
+8. Virtual DOM
 
 ---
 
-## 1. Variablen Deklaration
 
-``` js
-let x = 1;
+![](Logo.png)
+## 1. Was ist React?
 
-if (x === 1) {
-  let x = 2;
+- Eine modulare Komponentenbasierte JavaScript-Bibliothek zur Erstellung von Benutzeroberflächen.
+Entwickelt von Facebook, ist es trotz des neuartigen Ansatzes, aufgrund der hohen Renderingperformanz in der JS-Frontendentwicklung weit verbreitet und beliebt.
 
-  console.log(x); // Ausgabe: 2
-}
+- Es bildet typischerweise die Basis für Single-Page-Applications
 
-console.log(x); // Ausgabe: 1
-```
+---
+![](confused-code.jpg)
+## 2. Motivation
+- Frontendcode verständlicher machen und die Wartbarkeit erhöhen.
 
-Durch das Statement "let" lassen sich Variablen in Ihrer Gültigkeit,
-auf den Scope/Block, in dem sie sich bei ihrer Erzeugung befinden,
-beschränken.
+- Facebook: Bugs wie unsychrone Nachrichtenzähler traten immer wieder auf und waren vorallem bei sehr komplexen Zusammenhängen ein großes undurchsichtiges Problem.
 
 ---
 
-## 2. Contstant Deklaration
+## 3. Eine Bibliothek, kein Framework
 
-``` js
-function abc(){
+- Ein flexibles Werkzeug, welches erlaubt Anwendungen in der Sprache ihrer
+eigenen Entwicklungsumgebung - und nicht in der Sprache des Frameworks - zu erstellen.
 
-  const x = 42;
+- Gibt keine Grundstruktur vor und lässt sich deshalb einfach in bestehende Codebasen integrieren.
 
-  x = 12; // Fehler: Der Wert der Variable kann nur gelesen werden!
-
-  const x = 33; // Fehler: x wurde in diesem Scope bereits deklariert!
-
-  if(true){
-
-    const x = 99; // Erfolg: Es befindet sich nur ein "const x" in diesem Scope!
-
-
-  }
-
-}
-```
-
-Durch "const" besteht die Möglichkeit schreibgeschützte Variablen zu deklarieren.
-Diese besitzen wie "let" Variablen nur eine begrenzte Gültigkeit innerhalb ihres
-Scopes.
+---
+![Diagramm](react.png)
+## 4. Kompoentenarchitektur
+- Zentraler und einziger Baustein von React sind Komponenten welche unteinander
+kommunizieren.
 
 ---
 
-## 3. Arrow function Syntax
+## 4. Kompoentenarchitektur
 
-``` js
-var foo = function(a){
-  console.log(a);
-}
+- Folgt NICHT dem MV*-Modellen
 
-foo(55);
-```
+- Logik für Interaktion und Darstellung werden innerhalb eines einzigen Objekts gebündelt
 
-``` js
-var foo = a => {console.log(a);}
+- Bedeutet: Jeder Code der zu einer Komponente gehört,
+wird in eine Datei geschrieben - egal ob HTML, Javascript oder CSS.
 
-foo(55);
-```
+---
+![](JSX.png)
+## 5. JSX
 
-Die Arrow-Function-Syntax erlaubt eine gekürzte Schreibweise von
-Funktionsausdrücken.
+- Wichtiger Bestandteil von ReactJS.
+
+- Javascript-Syntax-Extension erlaubt das einpflegen
+von HTML.
+
+- JSX wandelt HTML in ausführbaren JS-Code um.
 
 ---
 
-## 4. Expression Interpolation
-``` js
-var a = 5;
-var b = 10;
-console.log('Fifteen is ' + (a + b) + ' and\nnot ' + (2 * a + b) + '.');
-// "Fifteen is 15 and
-// not 20."
-```
+![](State.png)
+## 6. State
 
-``` js
-var a = 5;
-var b = 10;
-console.log(`Fifteen is ${a + b} and not ${2 * a + b}.`);
-// "Fifteen is 15 and
-// not 20."
-```
-"Expression interpolation" erlaubt eine übersichtlichere Schreibweise von Variablen
-innerhalb einer Zeichenkette.
+- State: ein Attribut welches Daten der jeweiligen Komponente enthält.
+- Es kann nur von der Komponente selbst direkt verwaltet werden.
+- "getInitialState" wird einmalig bei Erzeugung der Komponenteninstanz aufgerufen.
+- "this.setState()" definiert einen Setter für die State-Attribute einer Komponente und löst nach einer Änderung die "render" Funktion aus.
 
 ---
-
-## 5. Implizite Rückgaben
-
-``` js
-function func(a, b, c) { return a + b + c; }
-```
-
-``` js
-let func = (a, b, c) => a + b + c;
-```
-
-Erlaubt bei simplen Funktionen eine Kurzschreibweise, da der Funktionsblock
-und das Schlüsselwort "return" wegfallen.
+![](Props.png)
+## 7. Props
+- Props werden von außen (anderen Komponenten) an Komponente übergeben und sind aus der Sicht der Empfänger-Komponenten-Seite schreibgeschützt.
+- Die Unterscheidung von unveränderlichen Props und den veränderlichem State ermöglicht es leichter das Verhalten des Systems nachzuvollziehen.
+- Weil: fehlerhafte Änderungen können nur durch Stateänderungen zustande kommen und nie durch Props.
 
 ---
-
-## 6. Array Iterationen
-
-``` js
-var arr = ['a', 'b', 'c'];
-for (var i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
-}
-```
-
-``` js
-var arr = ['a', 'b', 'c'];
-for (let i of arr) {
-    console.log(i);
-}
-```
-
-ES6 verfügt nun die Möglichkeit "foreach" ähnliche Schleifen zu implementieren,
-wie sie aus anderen Hochsprachen bekannt sind. Dies erlaubt eine übersichtlichere
-Schreibweise der Schleife.
-
----
-
-## 7. Default Parameter
-
-``` js
-let add = (a, b = 2) => {
-    return a + b;
-}
-
-add(10);   // returns 12
-add(10, 5) // returns 15
-```
-Die Funktion "add" verfügt über den Standardparameter "b".
-Sofern die Funktion "add" ohne Parameter aufgerufen wird, greift die
-in der Funktionsparameterliste vordefinierte Anweisung "b = 2".
-
----
-
-## 8. Klassendefinition
-ES5:
-``` js
-function Func(a, b) {
-    this.a = a;
-    this.b = b;
-}
-
-Func.prototype.getSum = function() {
-    return this.a + this.b;
-}
-
-var x = new Func(3, 4);
-x.getSum(); // returns 7
-```
-
----
-## 8. Klassendefinition
-
-ES6:
-``` js
-class Func {
-    constructor(a, b) {
-        this.a = a;
-        this.b = b;
-    }
-
-    getSum() {
-        return this.a + this.b;
-    }
-}
-
-let x = new Func(3, 4);
-x.getSum(); // returns 7
-```
-
-In ES6 sind die Schlüsselwörter "class" und "constructor" hinzugekommen, dagegen wird "prototype" nun nicht mehr benötigt. In ES6 stehen alle Klassenelemente
-, wie Funktionen und Attribute, innerhalb eines Blockes.
-
----
-
-## 9. Vererbung
-
-ES5:
-``` js
-function Inheritance(a, b, c) {
-    Func.call(this, a, b);
-
-    this.c = c;
-}
-
-Inheritance.prototype = Object.create(Func.prototype);
-Inheritance.prototype.getProduct = function() {
-    return this.a * this.b * this.c;
-}
-
-var y = new Inheritance(3, 4, 5);
-```
----
-## 9. Vererbung
-ES6:
-``` js
-class Inheritance extends Func {
-    constructor(a, b, c) {
-        super(a, b);
-
-        this.c = c;
-    }
-
-    getProduct() {
-        return this.a * this.b * this.c;
-    }
-}
-
-let y = new Inheritance(3, 4, 5);
-```
-Vererbung wurde durch die Schlüsselwörter "extends" und "super" (Basisklassenkonstruktoraufruf) sehr vereinfacht.
-
----
-
-## 10. Module - Import/Export
-
-HTML:
-``` html
-<script src="export.js"></script>
-<script type="module" src="import.js"></script>
-```
-
-export.js:
-``` js
-let func = a => a + a;
-let obj = {};
-let x = 0;
-
-export { func, obj, x };
-```
-
-import.js
-``` js
-import { func, obj, x } from './export.js';
-
-console.log(func(3), obj, x);
-```
-
-Es besteht nun die Möglichkeit, Funktionen eines Skripts zu einem Modul
-zusammenzufassen und diese dann in anderen Skripten wieder verfügbar
-zu machen.
-
----
-## 11.Promises/Callbacks
-
-ES5 Callback:
-``` js
-function doSecond() {
-    console.log('Do second.');
-}
-
-function doFirst(callback) {
-    setTimeout(function() {
-        console.log('Do first.');
-
-        callback();
-    }, 500);
-}
-
-doFirst(doSecond);
-```
----
-## 11.Promises/Callbacks
-ES6 Promise:
-``` js
-let doSecond = () => {
-    console.log('Do second.');
-}
-
-let doFirst = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        console.log('Do first.');
-
-        resolve();
-    }, 500);
-});
-
-doFirst.then(doSecond);
-```
-
-Promises erhalten die Übersichtlichkeit bei Verkettungen von asynchronen
-Funktionsaufrufen, welche bei klassischen Callbacks meist leidet.
-
----
-
-# Ende :)
-
+![](VirtualDOM.png)
+## 8. Virtual DOM
+- Prinzipiell verfolgt React das Ziel das Document-Object-Model bei Änderung der Daten neu zu Rendern.
+- Den kompletten DOM neu zu erzeugen ist sehr Ressourcenlastig
+- Daher: Änderungen werden in einen virtuellen DOM eingepflegt.
+- Durch den Vergleich zwischen virtuellen und tatsächlichen DOM ergibt sich eine Differenzmenge, welche React aufzeigt, an welchen bestimmten Stellen der DOM neu gerendert werden muss.
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
