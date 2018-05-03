@@ -1,4 +1,4 @@
-# ReactJS
+# Node-Package-Manager
 ##### Nikolai Kloß
 
 ---
@@ -7,47 +7,59 @@
 
 1. Was ist React?
 2. Motivation
-3. Eine Bibliothek, kein Framework
-4. Kompoentenarchitektur
-5. JSX
-6. State
-7. Prop
-8. Virtueller DOM
 
 ---
 
-## 1. Was ist React?
-
-Eine modulare Komponentenbasierte JavaScript-Bibliothek zur Erstellung von Benutzeroberflächen.
-Entwickelt von Facebook, ist es trotz des neuartigen Ansatzes, aufgrund der hohen Renderingperformanz in der JS-Frontendentwicklung weit verbreitet und beliebt.
-<p/>Es bildet typischerweise die Basis für Single-Page-Applications
+# Webpack
+##### Nikolai Kloß
 
 ---
 
-## 2. Motivation
+# Agenda
 
-- Frontendcode verständlicher und besser wartbar machen.
-- Facebook: Bugs wie unsychrone Zähler und Nachrichten traten immer wieder auf und waren vorallem bei sehr komplexen Zusammenhängen ein großes undurchsichtiges Problem.
-
----
-
-## 3. Eine Bibliothek, kein Framework
-
-- Ein flexibles Werkzeug, welches erlaubt Anwendungen in der Sprache ihrer
-eigenen Entwicklungsumgebung - und nicht in der Sprache des Frameworks - zu erstellen.
-- Gibt keine Grundstruktur vor und lässt sich deshalb einfach in bestehende Codebasen integrieren.
+1. Was ist Webpack?
+2. Loader
+3. Webpack-Dev-Server
+4. Konfiguration
 
 ---
 
-## 4. Kompoentenarchitektur
-
-![Diagramm](react.png)
-- Zentraler und einziger Baustein von React sind Komponenten welche unteinander
-kommunizieren.
+![](Webpack_Overview.png)
+## 1. Was ist Webpack ?
+- Ein "Bundler", der aus einer Reihe von Ressourcen wie z.B. mehreren
+JavaScript-Dateien/Modulen, eine große statische JavaScript-Datei(Asset) erzeugt.
 
 ---
 
-## 4. Kompoentenarchitektur
 
-- Folgt NICHT dem MVC-Modellen
-- Logik für Interaktion und Darstellung werden innerhalb eines Objekts gebündelt
+![](Webpack_Loader.png)
+## 2. Loader
+- Pflegt eine bündelbare Ressource(SASS,JS,PNG..) ins Asset ein.
+
+- Jede Ressourcenart braucht individuellen Umgang.
+
+- Deshalb: existieren viele Loader für viele Ressourcenarten.
+
+- Lassen sich einfach via. require() oder config einbinden.
+
+---
+
+## 3. Webpack-Dev-Server
+
+- Webpack stellt die Möglichkeit, einen einfache Webserver zum Testen der Anwendung
+zu verwenden.
+
+- "Hot"-Mode: Server erkennt Quellcode Änderungen automatisch und übersetzt die
+neuen Teile des Systems. Somit wird ein Neuladen der Anwendung im Browser unnötig.
+
+---
+
+## 4. Konfiguration
+![](Config.png)
+- Die Konfiguration von Webpack wird in "webpack.config.js"definiert.
+- "entry" und "output" legen den Pfad zur Einstiegsdatei fest und wohin
+Webpack Artefakte schreiben soll.
+- "resolve.extensions" definiert die Dateiendungen die Webpack zum bauen
+einbeziehen soll.
+- "devtool" veranlasst Webpack, "Source Maps" für das erzeugte Bundle-File zu
+erzeugen. Dies vereinfacht das Debuggen des Systems.
