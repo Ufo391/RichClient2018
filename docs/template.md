@@ -5,8 +5,31 @@
 
 # Agenda
 
-1. Was ist React?
-2. Motivation
+1. Was ist NPM?
+2. Bedienung
+3. package.json
+
+---
+
+![](npm.png)
+## 1. Was ist NPM?
+- Node-Package-Manager ist ein Paketmanager für die JavaScript Umgebung NodeJS.
+- Das npm-Repository ermöglicht das einfache Hinzufügen von Modulen ins eigene System.
+- An Open-Source-Modulen gibt es weit über 350.000 Pakete.
+- Ähnlich: Advance-Packaging-Tool (APT) für Debian GNU/Linux - Ubuntu.
+
+---
+
+![](npm_console.png)
+## 2. Bedienung
+- npm wird meist über ein Terminal bedient und bietet einen breiten Umfang an Befehlen.
+- Beispiel: >_ $ npm install %Modulname
+
+---
+![](package.json.png)
+## 3. package.json
+- Die Basis für npm ist die "package.json" Datei, welche pro Projekt einmal existert.
+- Enthält: Projektnamen, run scripts, Paketabhängigkeiten und deren Versionen
 
 ---
 
