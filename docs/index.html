@@ -25,101 +25,110 @@ class: center, middle
 
 class: center, middle
 
-
-# Node-Package-Manager
+# Software Qualität
 ##### Nikolai Kloß
 
 ---
 
 # Agenda
 
-1. Was ist NPM?
-2. Bedienung
-3. package.json
+1. Testing Functional JavaScript
+2. Mocha
+3. Chai
+4. SinonJS
+5. Jest
 
 ---
 
-![](npm.png)
-## 1. Was ist NPM?
-- Node-Package-Manager ist ein Paketmanager für die JavaScript Umgebung NodeJS.
+## 1. Testing Functional JavaScript
 
-- Das npm-Repository ermöglicht das einfache Hinzufügen von Modulen ins eigene System.
+### Warum testen?
+* Zeigen ob Code im System das tut was entsprechend erwartet wird
 
-- An Open-Source-Modulen gibt es weit über 350.000 Pakete.
+* Änderungen im Code müssen zu dem im Test definierten Ergebnis führen,
+ansonsten --> Fehler im Code.
 
-- Ähnlich: Advance-Packaging-Tool (APT) für Debian GNU/Linux - Ubuntu.
 
----
-
-![](npm_console.png)
-## 2. Bedienung
-- npm wird meist über ein Terminal bedient und bietet einen breiten Umfang an Befehlen.
-
-- Beispiel: >_ $ npm install %Modulname
-
----
-![](package.json.png)
-## 3. package.json
-- Die Basis für npm ist die "package.json" Datei, welche pro Projekt einmal existert.
-
-- Enthält: Projektnamen, run scripts, Paketabhängigkeiten und deren Versionen
+### Arten:
+* Unit-Tests:
+  * Testet die Funktionalität eines bestimmten Teils im Code
+* Integrationstests:
+  * Prüft den Datenfluss und die Kommunikation unter den Komponenten
+* Funktionale-Tests:
+  * Betrachtet das Verhalten des gesamten Systems
 
 ---
 
-# Webpack
-##### Nikolai Kloß
+## 1. Testing Functional JavaScript
+
+### Vorteil:
+* Einfach zu testen, weil jede Eingabe eine feste Ausgabe erzeugt
+
+* Es müssen kein Kontext, Zustand oder interfunktionalen Abhängigkeiten
+beatrachtet werden
 
 ---
 
-# Agenda
+## 2. Mocha
 
-1. Was ist Webpack?
-2. Loader
-3. Webpack-Dev-Server
-4. Konfiguration
-
----
-
-![](Webpack_Overview.png)
-## 1. Was ist Webpack ?
-- Ein "Bundler", der aus einer Reihe von Ressourcen wie z.B. mehreren
-JavaScript-Dateien/Modulen, eine große statische JavaScript-Datei(Asset) erzeugt.
+### Mocha?
+* Mocha ist ein "Test Runner" der sich via npm einfach einbinden lässt
+  * Tests sind nicht in Mocha geschrieben
+  * Mocha führt die Tests nur aus
 
 ---
 
+## 3. Chai
 
-![](Webpack_Loader.png)
-## 2. Loader
-- Pflegt eine bündelbare Ressource(SASS,JS,PNG..) ins Asset ein.
+### Chai?
+* Chai ist eine Assertion Bibliothek
 
-- Jede Ressourcenart braucht individuellen Umgang.
-
-- Deshalb: existieren viele Loader für viele Ressourcenarten.
-
-- Lassen sich einfach via. require() oder config einbinden.
+* Es bietet gegenüber der "Assert" Bibliothek eine bessere lesbarkeit
 
 ---
 
-## 3. Webpack-Dev-Server
+## 4. SinonJS
 
-- Webpack stellt die Möglichkeit, einen einfache Webserver zum Testen der Anwendung
-zu verwenden.
+### SinonJS?
+* Bietet Spies, Stubs und Mocks zum Testen des Systems an.
 
-- "Hot"-Mode: Server erkennt Quellcode Änderungen automatisch und übersetzt die
-neuen Teile des Systems. Somit wird ein Neuladen der Anwendung im Browser unnötig.
+### Spies:
+* Ermöglicht "fake" Funktionen zu schreiben
+
+* Ziel ist das Aufzeigen der Aufrufe der Funktion
+
+* Kann auch bestehende Funktionen beobachten
+
+### Stubs:
+* Funktionen lassen sich einfach durch andere Funktionen auswechseln
+
+* So lässt sich eine bestimmte Funktion auch in einem anderen Kontext testen
 
 ---
 
-## 4. Konfiguration
-![](Config.png)
-- Die Konfiguration von Webpack wird in "webpack.config.js"definiert.
-- "entry" und "output" legen den Pfad zur Einstiegsdatei fest und wohin
-Webpack Artefakte schreiben soll.
-- "resolve.extensions" definiert die Dateiendungen die Webpack zum bauen
-einbeziehen soll.
-- "devtool" veranlasst Webpack, "Source Maps" für das erzeugte Bundle-File zu
-erzeugen. Dies vereinfacht das Debuggen des Systems.
+## 4. SinonJS
 
+### Mocks:
+* "Fake" Methoden mit vorprogrammierten Verhalten und vorprogrammierten erwarteten Ergebnissen
+
+* Nützlich um ein noch nicht existierendes Teilsystem zu Simulieren
+  * Bsp.: Logik zu einer Datenbank Applikation implementieren, ohne, dass die DB schon existiert --> Datenbankeinträge werden gemockt
+
+---
+
+## 5. Jest
+
+### Jest?
+* Ein Test-Runner, welcher expectations, spies, mocks und Snapshot-Tests beinhaltet
+
+### Snapshot-Test?
+
+* Vorraussetzung: funktionierende zu testende Komponente
+* Wird nicht während der Entwicklungszeit der Komponente erzeugt
+* Ablauf:
+  * 1: Ausführung der funktionierenden Komponente & speichern von dessen Zustand (Snapshot)
+  * 2: Jede weitere Ausführung wird mit dem Snapshot verglichen
+  * 3: Bei Unterschieden --> Fehler im System erkannt
 
 
     </textarea>
